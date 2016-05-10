@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div th:fragment="content">        
+            <div class="clearfix"></div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h1>Pengguna</h1>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div th:replace="/fragments/alert"></div>
+                            <a th:href="@{/user/create}">
+                                <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>
+                                    &nbsp;Tambah Pengguna</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+            <!-- Table -->
+            <div class="clearfix">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_content">
+                                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama</th>
+                                            <th>Username</th>
+                                            <th>Password</th>
+                                            <th>Jabatan</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:if="${#lists.isEmpty(allUsers)}">
+                                            <td colspan="10" align="center">Tidak ada User yang tersimpan</td> 
+                                        </tr>
+                                        <tr th:each="user : ${allUsers}">
+                                            <td th:text="${user.nama}">Nama</td>
+                                            <td th:text="${user.username}">Username</td>
+                                            <td th:text="${user.password}">Password</td>
+                                            <td th:text="${user.jabatan.namaJabatan}">Jabatan</td>
+                                            <td align="center">
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            <form th:action="@{/user/view/{id}(id=${user.userId})}" th:object="${user}" method="get" id="formedit">
+                                                                <button type="submit" class="btn btn-primary btn-xs">
+                                                                    <i class="glyphicon glyphicon-eye-open"></i> &nbsp; Lihat
+                                                                </button>&nbsp;&nbsp;
+                                                            </form>
+                                                        </td>
+                                                        <td>
+                                                            <form th:action="@{/user/edit/{id}(id=${user.userId})}" th:object="${user}" method="get" id="formedit">
+                                                                <button type="submit" class="btn btn-success btn-xs">
+                                                                    <i class="glyphicon glyphicon-edit"></i> &nbsp; Edit &nbsp;
+                                                                </button>&nbsp;&nbsp;
+                                                            </form>
+                                                        </td>
+                                                        <td>
+                                                            <form th:action="@{/user/delete/{id}(id=${user.userId})}" th:object="${user}" method="get" id="formhapus">
+                                                                <button type="submit" class="btn btn-danger btn-xs">
+                                                                    <i class="glyphicon glyphicon-trash"></i> Hapus
+                                                                </button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end Table -->
+        </div>   
+    </body>
+</html>
