@@ -1,0 +1,54 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<title>Edit User</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+	<div th:fragment="content" th:object="${berat}">
+		<div class="clearfix"></div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="x_panel">
+					<div class="x_title">
+						<h1>Berat &nbsp; </h1>
+						<div class="clearfix"></div>
+					</div>
+					<div class="x_content">
+						<br />
+
+						<form class="form-horizontal">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Nama Balita: </label>
+								<div class="col-sm-10">
+									<p class="form-control-static" th:text="${berat.idBalita.nama}">nama</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Umur : </label>
+								<div class="col-sm-10">
+									<p class="form-control-static" th:text="${berat.umur}">umur</p>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Berat : </label>
+								<div class="col-sm-10">
+									<p class="form-control-static" th:text="${berat.beratBalita}">berat</p>
+								</div>
+							</div>
+							<div class="ln_solid"></div>
+							<div class="form-group">
+                                    <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                                       <a th:href="@{/berat/savepage}" class="btn btn-danger"><i class="glyphicon glyphicon-chevron-left"></i>
+                                            &nbsp;Kembali
+                                        </a>
+                                    </div>
+                                </div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
