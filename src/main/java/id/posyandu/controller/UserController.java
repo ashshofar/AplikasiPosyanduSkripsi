@@ -82,6 +82,7 @@ public class UserController {
             User user = userService.findUser(userId);
             if (user != null) {
                 model.addAttribute("user", user);
+                model.addAttribute("allJabatans", (Collection<Jabatan>) jabatanService.getAllJabatans());
                 return "/user/edit";
             } else {
                 redirectAttributes.addFlashAttribute("status", "notfound");
@@ -100,10 +101,11 @@ public class UserController {
     }
     
    @RequestMapping(value = "/user/update/{userId}", method = RequestMethod.POST)
-    public String update(@PathVariable("userId") String userId, 
+   public String updateUser(@PathVariable("userId") String userId, 
     		String nama, 
     		String tempatLahir,
     		Date tanggalLahir,
+    		String jenisKelamin,
     		String alamat,
     		String telepon,
     		String foto,
@@ -117,6 +119,7 @@ public class UserController {
     	user.setNama(nama);
     	user.setTempatLahir(tempatLahir);
     	user.setTanggalLahir(tanggalLahir);
+    	user.setJenisKelamin(jenisKelamin);
     	user.setAlamat(alamat);
     	user.setTelepon(telepon);
     	user.setFoto(foto);

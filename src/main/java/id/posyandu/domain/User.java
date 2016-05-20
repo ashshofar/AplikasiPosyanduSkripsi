@@ -1,7 +1,7 @@
 package id.posyandu.domain;
 
 import java.util.Date;
-import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,6 +29,8 @@ public class User {
     @Temporal(TemporalType.DATE)
     private Date tanggalLahir;
     
+    private String jenisKelamin;
+    
     private String alamat;
     
     private String telepon;
@@ -45,8 +47,18 @@ public class User {
     
     @Column(nullable = false)
     private boolean active;
+    
+    
 
-    public Jabatan getJabatan() {
+    public String getJenisKelamin() {
+		return jenisKelamin;
+	}
+
+	public void setJenisKelamin(String jenisKelamin) {
+		this.jenisKelamin = jenisKelamin;
+	}
+
+	public Jabatan getJabatan() {
         return jabatan;
     }
 

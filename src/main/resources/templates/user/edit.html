@@ -47,6 +47,17 @@ and open the template in the editor.
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="jenis Kelamin">Jenis Kelamin<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select th:field="*{jenisKelamin}" class="form-control col-md-7 col-xs-12" placeholder="Pilih Jenis Kelamin">
+                                            <option value="NONE"></option>
+                                            <option th:value="Laki-Laki" th:text="Laki-Laki"></option>
+                                            <option th:value="Perempuan" th:text="Perempuan"></option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="deskripsi">Alamat<span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -82,10 +93,15 @@ and open the template in the editor.
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="deskripsi">Jabatan<span class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="jabatan">Jabatan<span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" th:field="*{jabatan}" required="required" class="form-control col-md-7 col-xs-12"/>
+                                        <select th:field="*{jabatan}" class="select2_single form-control col-md-7 col-xs-12" placeholder="Pilih Jabatan">
+                                            <option value="NONE"></option>
+                                            <option th:each="jabatan : ${allJabatans}"
+                                                    th:value="${jabatan.jabatanId}"
+                                                    th:text="${jabatan.namaJabatan}">Cangkuang</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="ln_solid"></div>
@@ -94,7 +110,7 @@ and open the template in the editor.
                                         <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i>
                                             &nbsp;Simpan
                                         </button>
-                                        <a th:href="@{/jabatan/savepage}" class="btn btn-danger"><i class="glyphicon glyphicon-chevron-left"></i>
+                                        <a th:href="@{/user/savepage}" class="btn btn-danger"><i class="glyphicon glyphicon-chevron-left"></i>
                                             &nbsp;Kembali
                                         </a>
                                     </div>

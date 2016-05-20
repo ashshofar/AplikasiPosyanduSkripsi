@@ -48,6 +48,16 @@ and open the template in the editor.
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="jenis Kelamin">Jenis Kelamin<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select th:field="*{jenisKelamin}" class="form-control col-md-7 col-xs-12" placeholder="Pilih Jenis Kelamin">
+                                            <option th:value="Laki-Laki" th:text="Laki-Laki"></option>
+                                            <option th:value="Perempuan" th:text="Perempuan"></option>
+                                            </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="alamat">Alamat<span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">

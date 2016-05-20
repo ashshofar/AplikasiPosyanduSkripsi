@@ -1,7 +1,6 @@
 package id.posyandu.controller;
 
 import id.posyandu.domain.Jabatan;
-import id.posyandu.domain.User;
 import id.posyandu.service.JabatanService;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import ch.qos.logback.core.joran.conditional.IfAction;
 
 @Controller
 @ComponentScan
