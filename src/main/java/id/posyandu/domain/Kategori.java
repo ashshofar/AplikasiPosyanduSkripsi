@@ -1,8 +1,13 @@
 package id.posyandu.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -21,6 +26,17 @@ public class Kategori {
 	    private String namaKategori;
 	    
 	    private String deskripsiKategori;
+	    
+	    @OneToMany(cascade = CascadeType.MERGE, mappedBy="kategori")
+	    private List<Antropometri> daftarAntro = new ArrayList<>();
+	    
+	    public List<Antropometri> getDaftarAntro() {
+			return daftarAntro;
+		}
+
+		public void setDaftarAntro(List<Antropometri> daftarAntro) {
+			this.daftarAntro = daftarAntro;
+		}
 
 		public String getKategoriId() {
 			return kategoriId;

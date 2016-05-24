@@ -59,7 +59,23 @@ public class User {
     @OneToMany(cascade = CascadeType.MERGE, mappedBy="ibu")
     private List<Balita> daftarIbu = new ArrayList<>();
     
-    public String getJenisKelamin() {
+    public List<Balita> getDaftarAyah() {
+		return daftarAyah;
+	}
+
+	public void setDaftarAyah(List<Balita> daftarAyah) {
+		this.daftarAyah = daftarAyah;
+	}
+
+	public List<Balita> getDaftarIbu() {
+		return daftarIbu;
+	}
+
+	public void setDaftarIbu(List<Balita> daftarIbu) {
+		this.daftarIbu = daftarIbu;
+	}
+
+	public String getJenisKelamin() {
 		return jenisKelamin;
 	}
 

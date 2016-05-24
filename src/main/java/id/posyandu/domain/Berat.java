@@ -26,7 +26,7 @@ public class Berat {
 	int umur;
 	
 	private Float beratBalita;
-
+	
 	public String getBeratId() {
 		return beratId;
 	}
