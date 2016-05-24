@@ -52,6 +52,9 @@ public class Balita {
     @OneToMany(cascade = CascadeType.MERGE, mappedBy="idBalita")
     private List<Berat> daftarBerat = new ArrayList<>();
     
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy="idBalita")
+    private List<Tinggi> daftarTinggi = new ArrayList<>();
+    
     public List<Berat> getDaftarBerat() {
 		return daftarBerat;
 	}

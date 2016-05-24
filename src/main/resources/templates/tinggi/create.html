@@ -19,12 +19,12 @@ and open the template in the editor.
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h1>Tambah Berat</h1>
+                            <h1>Tambah Tinggi</h1>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
                             <br />
-                            <form th:action="@{/berat/save}" th:object="${berat}" method="post" class="form-horizontal form-label-left" id="form1">
+                            <form th:action="@{/tinggi/save}" th:object="${tinggi}" method="post" class="form-horizontal form-label-left" id="form1">
 								<div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ayah">Nama Balita<span class="required">*</span>
                                     </label>
@@ -45,10 +45,10 @@ and open the template in the editor.
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tanggalLahir">Berat<span class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tanggalLahir">Tinggi<span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" th:field="*{beratBalita}" required="required" class="form-control col-md-7 col-xs-12"/>
+                                        <input type="text" th:field="*{tinggiBalita}" required="required" class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 
@@ -58,7 +58,7 @@ and open the template in the editor.
                                         <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i>
                                             &nbsp;Simpan
                                         </button>
-                                        <a th:href="@{/berat/savepage}" class="btn btn-danger"><i class="glyphicon glyphicon-chevron-left"></i>
+                                        <a th:href="@{/tinggi/savepage}" class="btn btn-danger"><i class="glyphicon glyphicon-chevron-left"></i>
                                             &nbsp;Kembali
                                         </a>
                                     </div>
