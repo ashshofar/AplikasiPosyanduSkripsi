@@ -25,6 +25,7 @@ and open the template in the editor.
                         <div class="x_content">
                             <br />
                             <form th:action="@{/user/update/{id}(id=${user.userId})}" th:object="${user}" method="post" class="form-horizontal form-label-left" id="form1">
+                                
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nama <span class="required">*</span>
                                     </label>

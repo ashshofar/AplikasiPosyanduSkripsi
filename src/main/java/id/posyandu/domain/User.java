@@ -1,13 +1,18 @@
 package id.posyandu.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -41,15 +46,19 @@ public class User {
 
     private String password;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
     @JoinColumn
     private Jabatan jabatan;
     
     @Column(nullable = false)
     private boolean active;
     
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy="ayah")
+    private List<Balita> daftarAyah = new ArrayList<>();
     
-
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy="ibu")
+    private List<Balita> daftarIbu = new ArrayList<>();
+    
     public String getJenisKelamin() {
 		return jenisKelamin;
 	}

@@ -104,29 +104,11 @@ public class BalitaController {
 	
 	@RequestMapping(value = "/balita/update/{balitaId}", method = RequestMethod.POST)
 	public String updateBalita(@PathVariable("balitaId") String balitaId, 
-	    		String nama, 
-	    		String tempatLahir,
-	    		Date tanggalLahir,
-	    		String jenisKelamin,
-	    		String foto,
-	    		float beratLahir,
-	    		float tinggiLahir,
-	    		User ayah,
-	    		//User ibu,
+	    		Balita balita, 
 	    		final RedirectAttributes redirectAttributes){
-	    	Balita balita;
-	    	balita = balitaService.findBalita(balitaId);
-	    	balita.setBalitaId(balitaId);
-	    	balita.setNama(nama);
-	    	balita.setTempatLahir(tempatLahir);
-	    	balita.setTanggalLahir(tanggalLahir);
-	    	balita.setJenisKelamin(jenisKelamin);
-	    	balita.setFoto(foto);
-	    	balita.setBeratLahir(beratLahir);
-	    	balita.setTinggiLahir(tinggiLahir);
-	    	balita.setAyah(ayah);
-	    	//balita.setIbu(ibu);
 	    	
+	    	balita.setBalitaId(balitaId);
+	    		    	
 	    	
 	    	if (balitaService.saveBalita(balita) != null) {
 	            redirectAttributes.addFlashAttribute("edit", "success");

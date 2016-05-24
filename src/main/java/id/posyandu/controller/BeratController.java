@@ -93,19 +93,13 @@ public class BeratController {
 	
 	@RequestMapping(value = "/berat/update/{beratId}", method = RequestMethod.POST)
 	public String updateBerat(@PathVariable("beratId") String beratId, 
-	    		Balita idBalita, 
-	    		int umur,
-	    		float beratBalita,
+	    		Berat berat,
 	    		final RedirectAttributes redirectAttributes){
-	    	Berat berat;
-	    	berat = beratService.findBerat(beratId);
-	    	berat.setIdBalita(idBalita);
-	    	berat.setBeratId(beratId);
-	    	berat.setUmur(umur);
-	    	berat.setBeratBalita(beratBalita);
-	    		    	
 	    	
-	    	if (beratService.saveBerat(berat) != null) {
+	    	berat.setBeratId(beratId);
+	    	    	
+	    	
+	    	if (beratService.saveBerat(berat) != null ) {
 	            redirectAttributes.addFlashAttribute("edit", "success");
 	        } else {
 	            redirectAttributes.addFlashAttribute("edit", "unsuccess");

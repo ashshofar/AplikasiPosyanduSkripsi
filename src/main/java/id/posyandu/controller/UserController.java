@@ -8,6 +8,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -102,31 +106,11 @@ public class UserController {
     
    @RequestMapping(value = "/user/update/{userId}", method = RequestMethod.POST)
    public String updateUser(@PathVariable("userId") String userId, 
-    		String nama, 
-    		String tempatLahir,
-    		Date tanggalLahir,
-    		String jenisKelamin,
-    		String alamat,
-    		String telepon,
-    		String foto,
-    		String username,
-    		String password,
-    		Jabatan jabatan,
+		    User user,    		
     		final RedirectAttributes redirectAttributes){
-    	User user;
-    	user = userService.findUser(userId);
+    	   	
     	user.setUserId(userId);
-    	user.setNama(nama);
-    	user.setTempatLahir(tempatLahir);
-    	user.setTanggalLahir(tanggalLahir);
-    	user.setJenisKelamin(jenisKelamin);
-    	user.setAlamat(alamat);
-    	user.setTelepon(telepon);
-    	user.setFoto(foto);
-    	user.setUsername(username);
-    	user.setPassword(password);
-    	user.setJabatan(jabatan);
-    	
+    	    	
     	if (userService.saveUser(user) != null) {
             redirectAttributes.addFlashAttribute("edit", "success");
         } else {

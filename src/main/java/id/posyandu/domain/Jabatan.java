@@ -1,8 +1,13 @@
 package id.posyandu.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -19,7 +24,18 @@ public class Jabatan {
 
     private String deskripsi;
     
-    public String getJabatanId() {
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy="jabatan")
+    private List<User> daftarJabatan = new ArrayList<>();
+    
+    public List<User> getDaftarJabatan() {
+		return daftarJabatan;
+	}
+
+	public void setDaftarJabatan(List<User> daftarJabatan) {
+		this.daftarJabatan = daftarJabatan;
+	}
+
+	public String getJabatanId() {
         return jabatanId;
     }
 

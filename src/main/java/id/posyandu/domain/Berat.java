@@ -1,6 +1,8 @@
 package id.posyandu.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -17,7 +19,7 @@ public class Berat {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String beratId;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
     @JoinColumn (name = "id_balita")
     private Balita idBalita;
 	
