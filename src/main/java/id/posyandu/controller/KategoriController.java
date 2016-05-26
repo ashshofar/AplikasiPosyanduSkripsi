@@ -83,17 +83,11 @@ public class KategoriController {
     
     @RequestMapping(value = "/kategori/update/{kategoriId}", method = RequestMethod.POST)
     public String update(@PathVariable("kategoriId") String kategoriId, 
-    		String kodeKategori, 
-    		String namaKategori,
-    		String deskripsiKategori,
+    		Kategori kategori,
     		final RedirectAttributes redirectAttributes){
-    	Kategori kategori;
-    	kategori = kategoriService.findKategori(kategoriId);
+    	    	
     	kategori.setKategoriId(kategoriId);
-    	kategori.setKodeKategori(kodeKategori);
-    	kategori.setNamaKategori(namaKategori);
-    	kategori.setDeskripsiKategori(deskripsiKategori);
-    	
+    	    	
     	if (kategoriService.saveKategori(kategori) != null) {
             redirectAttributes.addFlashAttribute("edit", "success");
         } else {

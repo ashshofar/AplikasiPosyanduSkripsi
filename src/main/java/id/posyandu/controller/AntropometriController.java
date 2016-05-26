@@ -36,7 +36,7 @@ public class AntropometriController {
         return "/antro/index";
     }
     
-    @RequestMapping(value = "/antro/create", method = RequestMethod.GET)
+   @RequestMapping(value = "/antro/create", method = RequestMethod.GET)
     public String viewForm(Model model){
         
        model.addAttribute("antro", new Antropometri());
@@ -92,31 +92,11 @@ public class AntropometriController {
     
     @RequestMapping(value = "/antro/update/{antroId}", method = RequestMethod.POST)
     public String updateUser(@PathVariable("antroId") String antroId, 
-    		Kategori kategori,
-    		String jenisKelamin,
-     		int umur,
-     		float minus3sd,
-    		float minus2sd,
-    		float minus1sd,
-    		float median,
-    		float plus1sd,
-    		float plus2sd,
-    		float plus3sd,     		
+    		Antropometri antro,
      		final RedirectAttributes redirectAttributes){
-     	Antropometri antro;
-     	antro = antroService.findAntro(antroId);
+     	     	
      	antro.setAntroId(antroId);
-     	antro.setKategori(kategori);
-     	antro.setJenisKelamin(jenisKelamin);
-     	antro.setUmur(umur);
-     	antro.setMinus3sd(minus3sd);
-     	antro.setMinus2sd(minus2sd);
-     	antro.setMinus1sd(minus1sd);
-     	antro.setMedian(median);
-     	antro.setPlus1sd(plus1sd);
-     	antro.setPlus2sd(plus2sd);
-     	antro.setPlus3sd(plus3sd);
-     	
+     	     	
      	if (antroService.saveAntro(antro) != null) {
              redirectAttributes.addFlashAttribute("edit", "success");
          } else {
@@ -125,5 +105,46 @@ public class AntropometriController {
      	
      	return "redirect:/antro/savepage";
      }
+    
+    
+   /*     Controller Untuk Index Antropometri
+    *     BERAT BADAN BERDASARKAN UMUR
+    *     BB/U  
+    */
+
+    @RequestMapping(value = {"/antro/bbu", "/antro/bbu/savepage"}, method = RequestMethod.GET)
+    public String bbuIndex(Model model) {
+        
+        model.addAttribute("allAntrosL", (ArrayList<Antropometri>) antroService.getBbuAntrosL());
+        model.addAttribute("allAntrosP", (ArrayList<Antropometri>) antroService.getBbuAntrosP());
+        model.addAttribute("allKategoris", (Collection<Kategori>) kategoriService.getAllKategoris());
+        return "/antro/bbu/index";
+    }
+    
+    /*     Controller Untuk Index Antropometri
+     *     BERAT BADAN BERDASARKAN TINGGI
+     *     BB/T  
+     */
+    @RequestMapping(value = {"/antro/bbt", "/antro/bbt/savepage"}, method = RequestMethod.GET)
+    public String bbtIndex(Model model) {
+        
+        model.addAttribute("allAntrosL", (ArrayList<Antropometri>) antroService.getBbtAntrosL());
+        model.addAttribute("allAntrosP", (ArrayList<Antropometri>) antroService.getBbtAntrosP());
+        model.addAttribute("allKategoris", (Collection<Kategori>) kategoriService.getAllKategoris());
+        return "/antro/bbt/index";
+    }
+    
+    /*     Controller Untuk Index Antropometri
+     *     TINGGI BADAN BERDASARKAN UMUR
+     *     BB/T  
+     */
+    @RequestMapping(value = {"/antro/tbu", "/antro/tbu/savepage"}, method = RequestMethod.GET)
+    public String tbuIndex(Model model) {
+        
+        model.addAttribute("allAntrosL", (ArrayList<Antropometri>) antroService.getTbuAntrosL());
+        model.addAttribute("allAntrosP", (ArrayList<Antropometri>) antroService.getTbuAntrosP());
+        model.addAttribute("allKategoris", (Collection<Kategori>) kategoriService.getAllKategoris());
+        return "/antro/tbu/index";
+    }
 
 }

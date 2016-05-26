@@ -47,6 +47,42 @@ public class AntropometriServiceImplementation implements AntropometriService{
 		Iterable<Antropometri> itr = antroRepository.findAll();
         return (Collection<Antropometri>) itr;
 	}
+
+	@Override
+	public Collection<Antropometri> getBbuAntrosL() {
+		Iterable<Antropometri> itr = antroRepository.findByKategoriBbuL();
+        return (Collection<Antropometri>) itr;
+	}
+	
+	@Override
+	public Collection<Antropometri> getBbuAntrosP() {
+		Iterable<Antropometri> itr = antroRepository.findByKategoriBbuP();
+        return (Collection<Antropometri>) itr;
+	}
+
+	@Override
+	public Collection<Antropometri> getBbtAntrosL() {
+		Iterable<Antropometri> itr = antroRepository.findByKategoriBbtL();
+        return (Collection<Antropometri>) itr;
+	}
+	
+	@Override
+	public Collection<Antropometri> getBbtAntrosP() {
+		Iterable<Antropometri> itr = antroRepository.findByKategoriBbtP();
+        return (Collection<Antropometri>) itr;
+	}
+
+	@Override
+	public Collection<Antropometri> getTbuAntrosL() {
+		Iterable<Antropometri> itr = antroRepository.findByKategoriTbuL();
+        return (Collection<Antropometri>) itr;
+	}
+	
+	@Override
+	public Collection<Antropometri> getTbuAntrosP() {
+		Iterable<Antropometri> itr = antroRepository.findByKategoriTbuP();
+        return (Collection<Antropometri>) itr;
+	}
 	
 
 }
