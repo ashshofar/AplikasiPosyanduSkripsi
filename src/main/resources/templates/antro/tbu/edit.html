@@ -24,13 +24,13 @@ and open the template in the editor.
                         </div>
                         <div class="x_content">
                             <br />
-                            <form th:action="@{/antro/bbu/update/{id}(id=${antro.antroId})}" th:object="${antro}" method="post" class="form-horizontal form-label-left" id="form1">
-								 <input type="hidden" th:attr="name='kategori'" th:value = "f18e9b61-987e-4fb1-ac88-29495ebf93b4" />
+                            <form th:action="@{/antro/tbu/update/{id}(id=${antro.antroId})}" th:object="${antro}" method="post" class="form-horizontal form-label-left" id="form1">
+								 <input type="hidden" th:attr="name='kategori'" th:value = "a11e8a71-e558-4974-9323-5721e624358e" />
                                  <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kategori">Kategori<span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" required="required" readonly="readonly" class="form-control col-md-7 col-xs-12" value="Berat Badan Berdasarkan Umur (BB/U)"/>
+                                        <input type="text" required="required" readonly="readonly" class="form-control col-md-7 col-xs-12" value="Tinggi Badan Berdasarkan Umur (TB/U)"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -103,7 +103,7 @@ and open the template in the editor.
                                         <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i>
                                             &nbsp;Simpan
                                         </button>
-                                        <a th:href="@{/antro/bbu/savepage}" class="btn btn-danger"><i class="glyphicon glyphicon-chevron-left"></i>
+                                        <a th:href="@{/antro/tbu/savepage}" class="btn btn-danger"><i class="glyphicon glyphicon-chevron-left"></i>
                                             &nbsp;Kembali
                                         </a>
                                     </div>

@@ -19,29 +19,16 @@ and open the template in the editor.
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h1>Edit Antropometri</h1>
+                            <h1>Tambah Antropometri</h1>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
                             <br />
-                            <form th:action="@{/antro/bbu/update/{id}(id=${antro.antroId})}" th:object="${antro}" method="post" class="form-horizontal form-label-left" id="form1">
-								 <input type="hidden" th:attr="name='kategori'" th:value = "f18e9b61-987e-4fb1-ac88-29495ebf93b4" />
-                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="kategori">Kategori<span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" required="required" readonly="readonly" class="form-control col-md-7 col-xs-12" value="Berat Badan Berdasarkan Umur (BB/U)"/>
-                                    </div>
-                                </div>
+                            <form th:action="@{/antro/tbu/save}" th:object="${antro}" method="post" class="form-horizontal form-label-left" id="form1">
+								<input type="hidden" th:attr="name='kategori'" th:value = "a11e8a71-e558-4974-9323-5721e624358e" />
+								<input type="hidden" th:attr="name='jenisKelamin'" th:value ="Perempuan"/>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="jenisKelamin">Jenis Kelamin<span class="required">*</span>
-                                    </label>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" th:field="*{jenisKelamin}" required="required" readonly="readonly" class="form-control col-md-7 col-xs-12"/>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="umur">Umur (Bulan)<span class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="umur">Umur<span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" th:field="*{umur}" required="required" class="form-control col-md-7 col-xs-12"/>
@@ -103,7 +90,7 @@ and open the template in the editor.
                                         <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i>
                                             &nbsp;Simpan
                                         </button>
-                                        <a th:href="@{/antro/bbu/savepage}" class="btn btn-danger"><i class="glyphicon glyphicon-chevron-left"></i>
+                                        <a th:href="@{/antro/tbu/savepage}" class="btn btn-danger"><i class="glyphicon glyphicon-chevron-left"></i>
                                             &nbsp;Kembali
                                         </a>
                                     </div>

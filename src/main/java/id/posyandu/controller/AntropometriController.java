@@ -28,84 +28,6 @@ public class AntropometriController {
     @Autowired
     AntropometriService antroService;
     
-    @RequestMapping(value = {"/antro", "/antro/savepage"}, method = RequestMethod.GET)
-    public String index(Model model) {
-        
-        model.addAttribute("allAntros", (ArrayList<Antropometri>) antroService.getAllAntros());
-        model.addAttribute("allKategoris", (Collection<Kategori>) kategoriService.getAllKategoris());
-        return "/antro/index";
-    }
-    
-   @RequestMapping(value = "/antro/create", method = RequestMethod.GET)
-    public String viewForm(Model model){
-        
-       model.addAttribute("antro", new Antropometri());
-       model.addAttribute("allKategoris", (Collection<Kategori>) kategoriService.getAllKategoris());
-        
-        return "/antro/create";
-    }
-    
-    @RequestMapping(value = {"/antro/save"}, method = RequestMethod.POST)
-    public String saveAntro(@ModelAttribute("antro") Antropometri antro,
-    		final RedirectAttributes redirectAttributes) {
-
-        if (antroService.saveAntro(antro) != null) {
-            redirectAttributes.addFlashAttribute("save", "success");
-        } else {
-            redirectAttributes.addFlashAttribute("save", "unsuccess");
-        }
-        
-        return "redirect:/antro/savepage";
-    }
-    
-    @RequestMapping(value = "/antro/{operation}/{antroId}", method = RequestMethod.GET)
-    public String editRemoveAntro(@PathVariable("operation") String operation,
-            @PathVariable("antroId") String antroId, final RedirectAttributes redirectAttributes,
-            Model model) {
-        if (operation.equals("delete")) {
-            if (antroService.deleteAntro(antroId)) {
-                redirectAttributes.addFlashAttribute("deletion", "success");
-            } else {
-                redirectAttributes.addFlashAttribute("deletion", "unsuccess");
-            }
-        } else if (operation.equals("edit")) {
-            Antropometri antro = antroService.findAntro(antroId);
-            if (antro != null) {
-                model.addAttribute("antro", antro);
-                model.addAttribute("allKategoris", (Collection<Kategori>) kategoriService.getAllKategoris());
-                return "/antro/edit";
-            } else {
-                redirectAttributes.addFlashAttribute("status", "notfound");
-            }
-        } else if (operation.equals("view")) {
-        	Antropometri antro = antroService.findAntro(antroId);
-            if (antro != null) {
-                model.addAttribute("antro", antro);
-                return "/antro/view";
-            } else {
-                redirectAttributes.addFlashAttribute("status", "notfound");
-            }
-        }
-
-        return "redirect:/antro/savepage";
-    }
-    
-    @RequestMapping(value = "/antro/update/{antroId}", method = RequestMethod.POST)
-    public String updateUser(@PathVariable("antroId") String antroId, 
-    		Antropometri antro,
-     		final RedirectAttributes redirectAttributes){
-     	     	
-     	antro.setAntroId(antroId);
-     	     	
-     	if (antroService.saveAntro(antro) != null) {
-             redirectAttributes.addFlashAttribute("edit", "success");
-         } else {
-             redirectAttributes.addFlashAttribute("edit", "unsuccess");
-         }
-     	
-     	return "redirect:/antro/savepage";
-     }
-    
     
    /*     Controller Untuk Index Antropometri
     *     BERAT BADAN BERDASARKAN UMUR
@@ -173,7 +95,7 @@ public class AntropometriController {
         	Antropometri antro = antroService.findAntro(antroId);
             if (antro != null) {
                 model.addAttribute("antro", antro);
-                return "/antro/view";
+                return "/antro/bbu/view";
             } else {
                 redirectAttributes.addFlashAttribute("status", "notfound");
             }
@@ -181,6 +103,22 @@ public class AntropometriController {
 
         return "redirect:/antro/bbu/savepage";
     }
+    
+    @RequestMapping(value = "/antro/bbu/update/{antroId}", method = RequestMethod.POST)
+    public String updateAntroBbu(@PathVariable("antroId") String antroId, 
+    		Antropometri antro,
+     		final RedirectAttributes redirectAttributes){
+     	     	
+     	antro.setAntroId(antroId);
+     	     	
+     	if (antroService.saveAntro(antro) != null) {
+             redirectAttributes.addFlashAttribute("edit", "success");
+         } else {
+             redirectAttributes.addFlashAttribute("edit", "unsuccess");
+         }
+     	
+     	return "redirect:/antro/bbu/savepage";
+     }
     
     /*     Controller Untuk Index Antropometri
      *     BERAT BADAN BERDASARKAN TINGGI
@@ -195,6 +133,85 @@ public class AntropometriController {
         return "/antro/bbt/index";
     }
     
+    @RequestMapping(value = "/antro/bbt/createl", method = RequestMethod.GET)
+    public String viewFormBbtL(Model model){
+        
+       model.addAttribute("antro", new Antropometri());
+        
+        return "/antro/bbt/createl";
+    }
+    
+    @RequestMapping(value = "/antro/bbt/createp", method = RequestMethod.GET)
+    public String viewFormBbtP(Model model){
+        
+       model.addAttribute("antro", new Antropometri());
+        
+        return "/antro/bbt/createp";
+    }
+    
+    @RequestMapping(value = {"/antro/bbt/save"}, method = RequestMethod.POST)
+    public String saveAntroBbt(@ModelAttribute("antro") Antropometri antro,
+    		final RedirectAttributes redirectAttributes) {
+
+        if (antroService.saveAntro(antro) != null) {
+            redirectAttributes.addFlashAttribute("save", "success");
+        } else {
+            redirectAttributes.addFlashAttribute("save", "unsuccess");
+        }
+        
+        return "redirect:/antro/bbt/savepage";
+    }
+    
+    @RequestMapping(value = "/antro/bbt/{operation}/{antroId}", method = RequestMethod.GET)
+    public String editRemoveAntroBbt(@PathVariable("operation") String operation,
+            @PathVariable("antroId") String antroId, final RedirectAttributes redirectAttributes,
+            Model model) {
+        if (operation.equals("delete")) {
+            if (antroService.deleteAntro(antroId)) {
+                redirectAttributes.addFlashAttribute("deletion", "success");
+            } else {
+                redirectAttributes.addFlashAttribute("deletion", "unsuccess");
+            }
+        } else if (operation.equals("edit")) {
+            Antropometri antro = antroService.findAntro(antroId);
+            if (antro != null) {
+                model.addAttribute("antro", antro);
+                model.addAttribute("allKategoris", (Collection<Kategori>) kategoriService.getAllKategoris());
+                return "/antro/bbt/edit";
+            } else {
+                redirectAttributes.addFlashAttribute("status", "notfound");
+            }
+        } else if (operation.equals("view")) {
+        	Antropometri antro = antroService.findAntro(antroId);
+            if (antro != null) {
+                model.addAttribute("antro", antro);
+                return "/antro/bbt/view";
+            } else {
+                redirectAttributes.addFlashAttribute("status", "notfound");
+            }
+        }
+
+        return "redirect:/antro/bbt/savepage";
+    }
+    
+    @RequestMapping(value = "/antro/bbt/update/{antroId}", method = RequestMethod.POST)
+    public String updateAntroBbt(@PathVariable("antroId") String antroId, 
+    		Antropometri antro,
+     		final RedirectAttributes redirectAttributes){
+     	     	
+     	antro.setAntroId(antroId);
+     	     	
+     	if (antroService.saveAntro(antro) != null) {
+             redirectAttributes.addFlashAttribute("edit", "success");
+         } else {
+             redirectAttributes.addFlashAttribute("edit", "unsuccess");
+         }
+     	
+     	return "redirect:/antro/bbt/savepage";
+     }
+    
+    
+    
     /*     Controller Untuk Index Antropometri
      *     TINGGI BADAN BERDASARKAN UMUR
      *     BB/T  
@@ -207,5 +224,82 @@ public class AntropometriController {
         model.addAttribute("allKategoris", (Collection<Kategori>) kategoriService.getAllKategoris());
         return "/antro/tbu/index";
     }
+    
+    @RequestMapping(value = "/antro/tbu/createl", method = RequestMethod.GET)
+    public String viewFormTbuL(Model model){
+        
+       model.addAttribute("antro", new Antropometri());
+        
+        return "/antro/tbu/createl";
+    }
+    
+    @RequestMapping(value = "/antro/tbu/createp", method = RequestMethod.GET)
+    public String viewFormTbuP(Model model){
+        
+       model.addAttribute("antro", new Antropometri());
+        
+        return "/antro/tbu/createp";
+    }
+    
+    @RequestMapping(value = {"/antro/tbu/save"}, method = RequestMethod.POST)
+    public String saveAntroTbu(@ModelAttribute("antro") Antropometri antro,
+    		final RedirectAttributes redirectAttributes) {
+
+        if (antroService.saveAntro(antro) != null) {
+            redirectAttributes.addFlashAttribute("save", "success");
+        } else {
+            redirectAttributes.addFlashAttribute("save", "unsuccess");
+        }
+        
+        return "redirect:/antro/tbu/savepage";
+    }
+    
+    @RequestMapping(value = "/antro/tbu/{operation}/{antroId}", method = RequestMethod.GET)
+    public String editRemoveAntroTbu(@PathVariable("operation") String operation,
+            @PathVariable("antroId") String antroId, final RedirectAttributes redirectAttributes,
+            Model model) {
+        if (operation.equals("delete")) {
+            if (antroService.deleteAntro(antroId)) {
+                redirectAttributes.addFlashAttribute("deletion", "success");
+            } else {
+                redirectAttributes.addFlashAttribute("deletion", "unsuccess");
+            }
+        } else if (operation.equals("edit")) {
+            Antropometri antro = antroService.findAntro(antroId);
+            if (antro != null) {
+                model.addAttribute("antro", antro);
+                model.addAttribute("allKategoris", (Collection<Kategori>) kategoriService.getAllKategoris());
+                return "/antro/tbu/edit";
+            } else {
+                redirectAttributes.addFlashAttribute("status", "notfound");
+            }
+        } else if (operation.equals("view")) {
+        	Antropometri antro = antroService.findAntro(antroId);
+            if (antro != null) {
+                model.addAttribute("antro", antro);
+                return "/antro/tbu/view";
+            } else {
+                redirectAttributes.addFlashAttribute("status", "notfound");
+            }
+        }
+
+        return "redirect:/antro/tbu/savepage";
+    }
+    
+    @RequestMapping(value = "/antro/tbu/update/{antroId}", method = RequestMethod.POST)
+    public String updateAntroTbu(@PathVariable("antroId") String antroId, 
+    		Antropometri antro,
+     		final RedirectAttributes redirectAttributes){
+     	     	
+     	antro.setAntroId(antroId);
+     	     	
+     	if (antroService.saveAntro(antro) != null) {
+             redirectAttributes.addFlashAttribute("edit", "success");
+         } else {
+             redirectAttributes.addFlashAttribute("edit", "unsuccess");
+         }
+     	
+     	return "redirect:/antro/tbu/savepage";
+     }
 
 }
