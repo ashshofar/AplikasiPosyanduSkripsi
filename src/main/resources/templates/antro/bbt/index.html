@@ -20,21 +20,6 @@ and open the template in the editor.
 						<h1>Antropometri Berat Badan Berdasarkan Tinggi Badan</h1>
 						<div class="clearfix"></div>
 					</div>
-					<div class="x_content">
-						<div th:replace="/fragments/alert"></div>
-						<a th:href="@{/antro/bbt/createl}">
-							<button type="button" class="btn btn-primary">
-								<i class="fa fa-male"></i> &nbsp;Tambah
-								Antropometri (L)
-							</button>
-						</a>
-						<a th:href="@{/antro/bbt/createp}">
-							<button type="button" class="btn btn-danger">
-								<i class="fa fa-female"></i> &nbsp;Tambah
-								Antropometri (P) 
-							</button>
-						</a>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -104,15 +89,6 @@ and open the template in the editor.
 																&nbsp;
 															</button>
 															&nbsp;&nbsp;
-														</form>
-													</td>
-													<td>
-														<form
-															th:action="@{/antro/bbt/delete/{id}(id=${antro.antroId})}"
-															th:object="${antro}" method="get" id="formhapus">
-															<button type="submit" class="btn btn-danger btn-xs">
-																<i class="glyphicon glyphicon-trash"></i> Hapus
-															</button>
 														</form>
 													</td>
 												</tr>
@@ -193,15 +169,6 @@ and open the template in the editor.
 																&nbsp;
 															</button>
 															&nbsp;&nbsp;
-														</form>
-													</td>
-													<td>
-														<form
-															th:action="@{/antro/bbt/delete/{id}(id=${antro.antroId})}"
-															th:object="${antro}" method="get" id="formhapus">
-															<button type="submit" class="btn btn-danger btn-xs">
-																<i class="glyphicon glyphicon-trash"></i> Hapus
-															</button>
 														</form>
 													</td>
 												</tr>
