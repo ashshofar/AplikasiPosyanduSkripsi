@@ -17,14 +17,14 @@ and open the template in the editor.
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h1>Pengguna</h1>
+                            <h1>Ketua Rw</h1>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
                             <div th:replace="/fragments/alert"></div>
-                            <a th:href="@{/user/create}">
+                            <a th:href="@{/user/rw/create}">
                                 <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>
-                                    &nbsp;Tambah Pengguna</button>
+                                    &nbsp;Tambah Ketua Rw</button>
                             </a>
                         </div>
                     </div>
@@ -47,10 +47,10 @@ and open the template in the editor.
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr th:if="${#lists.isEmpty(allUsers)}">
-                                            <td colspan="10" align="center">Tidak ada User yang tersimpan</td> 
+                                        <tr th:if="${#lists.isEmpty(allRws)}">
+                                            <td colspan="10" align="center">Tidak ada Rw yang tersimpan</td> 
                                         </tr>
-                                        <tr th:each="user : ${allUsers}">
+                                        <tr th:each="user : ${allRws}">
                                             <td th:text="${user.nama}">Nama</td>
                                             <td th:text="${user.username}">Username</td>
                                             <td th:text="${user.password}">Password</td>
@@ -58,21 +58,21 @@ and open the template in the editor.
                                                 <table>
                                                     <tr>
                                                         <td>
-                                                            <form th:action="@{/user/view/{id}(id=${user.userId})}" th:object="${user}" method="get" id="formedit">
+                                                            <form th:action="@{/user/rw/view/{id}(id=${user.userId})}" th:object="${user}" method="get" id="formedit">
                                                                 <button type="submit" class="btn btn-primary btn-xs">
                                                                     <i class="glyphicon glyphicon-eye-open"></i> &nbsp; Lihat
                                                                 </button>&nbsp;&nbsp;
                                                             </form>
                                                         </td>
                                                         <td>
-                                                            <form th:action="@{/user/edit/{id}(id=${user.userId})}" th:object="${user}" method="get" id="formedit">
+                                                            <form th:action="@{/user/rw/edit/{id}(id=${user.userId})}" th:object="${user}" method="get" id="formedit">
                                                                 <button type="submit" class="btn btn-success btn-xs">
                                                                     <i class="glyphicon glyphicon-edit"></i> &nbsp; Edit &nbsp;
                                                                 </button>&nbsp;&nbsp;
                                                             </form>
                                                         </td>
                                                         <td>
-                                                            <form th:action="@{/user/delete/{id}(id=${user.userId})}" th:object="${user}" method="get" id="formhapus">
+                                                            <form th:action="@{/user/rw/delete/{id}(id=${user.userId})}" th:object="${user}" method="get" id="formhapus">
                                                                 <button type="submit" class="btn btn-danger btn-xs">
                                                                     <i class="glyphicon glyphicon-trash"></i> Hapus
                                                                 </button>

@@ -24,42 +24,40 @@ public class Jabatan {
 
     private String deskripsi;
     
-    @OneToMany(cascade = CascadeType.MERGE, mappedBy="jabatan")
-    private List<User> daftarJabatan = new ArrayList<>();
-    
-    public List<User> getDaftarJabatan() {
-		return daftarJabatan;
-	}
-
-	public void setDaftarJabatan(List<User> daftarJabatan) {
-		this.daftarJabatan = daftarJabatan;
-	}
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy="idJabatan")
+    private List<Assigment> daftarAssigmentJabatan = new ArrayList<>();
 
 	public String getJabatanId() {
-        return jabatanId;
-    }
+		return jabatanId;
+	}
 
-    public void setJabatanId(String jabatanId) {
-        this.jabatanId = jabatanId;
-    }
+	public void setJabatanId(String jabatanId) {
+		this.jabatanId = jabatanId;
+	}
 
-    public String getNamaJabatan() {
-        return namaJabatan;
-    }
+	public String getNamaJabatan() {
+		return namaJabatan;
+	}
 
-    public void setNamaJabatan(String namaJabatan) {
-        this.namaJabatan = namaJabatan;
-    }
+	public void setNamaJabatan(String namaJabatan) {
+		this.namaJabatan = namaJabatan;
+	}
 
-    public String getDeskripsi() {
-        return deskripsi;
-    }
+	public String getDeskripsi() {
+		return deskripsi;
+	}
 
-    public void setDeskripsi(String deskripsi) {
-        this.deskripsi = deskripsi;
-    }
+	public void setDeskripsi(String deskripsi) {
+		this.deskripsi = deskripsi;
+	}
 
-    
-    
-    
+	public List<Assigment> getDaftarAssigmentJabatan() {
+		return daftarAssigmentJabatan;
+	}
+
+	public void setDaftarAssigmentJabatan(List<Assigment> daftarAssigmentJabatan) {
+		this.daftarAssigmentJabatan = daftarAssigmentJabatan;
+	}
+
+	 
 }

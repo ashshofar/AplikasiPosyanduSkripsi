@@ -45,4 +45,34 @@ public class UserServiceImplementation implements UserService {
         return (Collection<User>) itr;
     }
 
+	@Override
+	public Collection<User> getAllOrangtuas() {
+		Iterable<User> itr = userRepository.findOrangtua();
+        return (Collection<User>) itr;
+	}
+
+	@Override
+	public Collection<User> getAllBidans() {
+		Iterable<User> itr = userRepository.findBidan();
+        return (Collection<User>) itr;
+	}
+
+	@Override
+	public Collection<User> getAllPetugas() {
+		Iterable<User> itr = userRepository.findPetugas();
+        return (Collection<User>) itr;
+	}
+
+	@Override
+	public Collection<User> getAllRws() {
+		Iterable<User> itr = userRepository.findRw();
+        return (Collection<User>) itr;
+	}
+
+	@Override
+	public Collection<User> getAllAdmins() {
+		Iterable<User> itr = userRepository.findAdmin();
+        return (Collection<User>) itr;
+	}
+
 }

@@ -7,11 +7,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -46,9 +43,8 @@ public class User {
 
     private String password;
     
-    @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
-    @JoinColumn
-    private Jabatan jabatan;
+    @OneToMany(cascade=CascadeType.ALL, mappedBy="idUser")
+    private List<Assigment> daftarAssigmentUser = new ArrayList<>();
     
     @Column(nullable = false)
     private boolean active;
@@ -58,8 +54,104 @@ public class User {
     
     @OneToMany(cascade = CascadeType.MERGE, mappedBy="ibu")
     private List<Balita> daftarIbu = new ArrayList<>();
-    
-    public List<Balita> getDaftarAyah() {
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getNama() {
+		return nama;
+	}
+
+	public void setNama(String nama) {
+		this.nama = nama;
+	}
+
+	public String getTempatLahir() {
+		return tempatLahir;
+	}
+
+	public void setTempatLahir(String tempatLahir) {
+		this.tempatLahir = tempatLahir;
+	}
+
+	public Date getTanggalLahir() {
+		return tanggalLahir;
+	}
+
+	public void setTanggalLahir(Date tanggalLahir) {
+		this.tanggalLahir = tanggalLahir;
+	}
+
+	public String getJenisKelamin() {
+		return jenisKelamin;
+	}
+
+	public void setJenisKelamin(String jenisKelamin) {
+		this.jenisKelamin = jenisKelamin;
+	}
+
+	public String getAlamat() {
+		return alamat;
+	}
+
+	public void setAlamat(String alamat) {
+		this.alamat = alamat;
+	}
+
+	public String getTelepon() {
+		return telepon;
+	}
+
+	public void setTelepon(String telepon) {
+		this.telepon = telepon;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public List<Assigment> getDaftarAssigmentUser() {
+		return daftarAssigmentUser;
+	}
+
+	public void setDaftarAssigmentUser(List<Assigment> daftarAssigmentUser) {
+		this.daftarAssigmentUser = daftarAssigmentUser;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public List<Balita> getDaftarAyah() {
 		return daftarAyah;
 	}
 
@@ -74,104 +166,6 @@ public class User {
 	public void setDaftarIbu(List<Balita> daftarIbu) {
 		this.daftarIbu = daftarIbu;
 	}
-
-	public String getJenisKelamin() {
-		return jenisKelamin;
-	}
-
-	public void setJenisKelamin(String jenisKelamin) {
-		this.jenisKelamin = jenisKelamin;
-	}
-
-	public Jabatan getJabatan() {
-        return jabatan;
-    }
-
-    public void setJabatan(Jabatan jabatan) {
-        this.jabatan = jabatan;
-    }
-    
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-
-    public String getTempatLahir() {
-        return tempatLahir;
-    }
-
-    public void setTempatLahir(String tempatLahir) {
-        this.tempatLahir = tempatLahir;
-    }
-
-    public Date getTanggalLahir() {
-        return tanggalLahir;
-    }
-
-    public void setTanggalLahir(Date tanggalLahir) {
-        this.tanggalLahir = tanggalLahir;
-    }
-
-    public String getAlamat() {
-        return alamat;
-    }
-
-    public void setAlamat(String alamat) {
-        this.alamat = alamat;
-    }
-
-    public String getTelepon() {
-        return telepon;
-    }
-
-    public void setTelepon(String telepon) {
-        this.telepon = telepon;
-    }
-
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-    
     
     
 }

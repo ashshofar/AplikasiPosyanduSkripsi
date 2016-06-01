@@ -1,121 +1,118 @@
 package id.posyandu.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import id.posyandu.domain.Balita;
+import id.posyandu.domain.Assigment;
+import id.posyandu.domain.Jabatan;
 import id.posyandu.domain.User;
-import id.posyandu.service.BalitaService;
+import id.posyandu.service.AssigmentService;
+import id.posyandu.service.JabatanService;
 import id.posyandu.service.UserService;
 
 @Controller
 @ComponentScan
-public class BalitaController {
-	
+public class AssigmentController {
 	@Autowired
     UserService userService;
 	
 	@Autowired
-	BalitaService balitaService;
+	AssigmentService assigmentService;
 	
-	@InitBinder
-    public void initBinder(WebDataBinder binder){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        dateFormat.setLenient(false);
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-    }
+	@Autowired
+	JabatanService jabatanService;
 	
-	@RequestMapping(value = {"/balita", "/balita/savepage"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/assigment", "/assigment/savepage"}, method = RequestMethod.GET)
     public String index(Model model) {
         
-        model.addAttribute("allBalitas", (ArrayList<Balita>) balitaService.getAllBalitas());
+        model.addAttribute("allAssigments", (ArrayList<Assigment>) assigmentService.getAllAssigments());
         model.addAttribute("allUsers", (Collection<User>) userService.getAllUsers());
-        return "/balita/index";
+        model.addAttribute("allJabatans", (Collection<Jabatan>) jabatanService.getAllJabatans());
+        return "/assigment/index";
     }
 	
-	@RequestMapping(value = "/balita/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/assigment/create", method = RequestMethod.GET)
     public String viewForm(Model model){
         
-       model.addAttribute("balita", new Balita());
+       model.addAttribute("assigment", new Assigment());
        model.addAttribute("allUsers", (Collection<User>) userService.getAllUsers());
+       model.addAttribute("allJabatans", (Collection<Jabatan>) jabatanService.getAllJabatans());
         
-        return "/balita/create";
+        return "/assigment/create";
     }
 	
-	@RequestMapping(value = {"/balita/save"}, method = RequestMethod.POST)
-    public String saveBalita(@ModelAttribute("balita") Balita balita,
+	@RequestMapping(value = {"/assigment/save"}, method = RequestMethod.POST)
+    public String saveAssigment(@ModelAttribute("assigment") Assigment assigment,
             final RedirectAttributes redirectAttributes) {
 
-        if (balitaService.saveBalita(balita) != null) {
+        if (assigmentService.saveAssigment(assigment) != null) {
             redirectAttributes.addFlashAttribute("save", "success");
         } else {
             redirectAttributes.addFlashAttribute("save", "unsuccess");
         }
 
-        return "redirect:/balita/savepage";
+        return "redirect:/assigment/savepage";
     }
 	
-	@RequestMapping(value = "/balita/{operation}/{balitaId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/assigment/{operation}/{assigmentId}", method = RequestMethod.GET)
     public String editRemoveBalita(@PathVariable("operation") String operation,
-            @PathVariable("balitaId") String balitaId, final RedirectAttributes redirectAttributes,
+            @PathVariable("assigmentId") String assigmentId, final RedirectAttributes redirectAttributes,
             Model model) {
         if (operation.equals("delete")) {
-            if (balitaService.deleteBalita(balitaId)) {
+            if (assigmentService.deleteAssigment(assigmentId)) {
                 redirectAttributes.addFlashAttribute("deletion", "success");
             } else {
                 redirectAttributes.addFlashAttribute("deletion", "unsuccess");
             }
         } else if (operation.equals("edit")) {
-            Balita balita = balitaService.findBalita(balitaId);
-            if (balita != null) {
-                model.addAttribute("balita", balita);
+            Assigment assigment = assigmentService.findAssigment(assigmentId);
+            if (assigment != null) {
+                model.addAttribute("assigment", assigment);
                 model.addAttribute("allUsers", (Collection<User>) userService.getAllUsers());
-                return "/balita/edit";
+                model.addAttribute("allJabatans", (Collection<Jabatan>) jabatanService.getAllJabatans());
+                return "/assigment/edit";
             } else {
                 redirectAttributes.addFlashAttribute("status", "notfound");
             }
         } else if (operation.equals("view")) {
-            Balita balita = balitaService.findBalita(balitaId);
-            if (balita != null) {
-                model.addAttribute("balita", balita);
-                return "/balita/view";
+        	Assigment assigment = assigmentService.findAssigment(assigmentId);
+            if (assigment != null) {
+                model.addAttribute("assigment", assigment);
+                return "/assigment/view";
             } else {
                 redirectAttributes.addFlashAttribute("status", "notfound");
             }
         }
 
-        return "redirect:/balita/savepage";
+        return "redirect:/assigment/savepage";
     }
 	
-	@RequestMapping(value = "/balita/update/{balitaId}", method = RequestMethod.POST)
-	public String updateBalita(@PathVariable("balitaId") String balitaId, 
-	    		Balita balita, 
+	@RequestMapping(value = "/assigment/update/{assigmentId}", method = RequestMethod.POST)
+	public String updateBalita(@PathVariable("assigmentId") String assigmentId, 
+	    		Assigment assigment, 
 	    		final RedirectAttributes redirectAttributes){
 	    	
-	    	balita.setBalitaId(balitaId);
+			assigment.setAssigmentId(assigmentId);
 	    		    	
 	    	
-	    	if (balitaService.saveBalita(balita) != null) {
+	    	if (assigmentService.saveAssigment(assigment) != null) {
 	            redirectAttributes.addFlashAttribute("edit", "success");
 	        } else {
 	            redirectAttributes.addFlashAttribute("edit", "unsuccess");
 	        }
 	    	
-	    	return "redirect:/balita/savepage";
+	    	return "redirect:/assigment/savepage";
 	    }
+	
+	
 }

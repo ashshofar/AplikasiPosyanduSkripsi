@@ -19,29 +19,28 @@ and open the template in the editor.
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h1>Edit User</h1>
+                            <h1>Tambah Rw</h1>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
                             <br />
-                            <form th:action="@{/user/update/{id}(id=${user.userId})}" th:object="${user}" method="post" class="form-horizontal form-label-left" id="form1">
-                                
-                                <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nama <span class="required">*</span>
+                            <form th:action="@{/user/rw/save}" th:object="${user}" method="post" class="form-horizontal form-label-left" id="form1">
+								<div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nama">Nama<span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" th:field="*{nama}" required="required" class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="deskripsi">Tempat Lahir<span class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tempatLahir">Tempat Lahir<span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" th:field="*{tempatLahir}" required="required" class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="deskripsi">Tanggal Lahir<span class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tanggalLahir">Tanggal Lahir<span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" th:field="*{tanggalLahir}" required="required" class="form-control col-md-7 col-xs-12"/>
@@ -52,54 +51,54 @@ and open the template in the editor.
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <select th:field="*{jenisKelamin}" class="form-control col-md-7 col-xs-12" placeholder="Pilih Jenis Kelamin">
-                                            <option value="NONE"></option>
                                             <option th:value="Laki-Laki" th:text="Laki-Laki"></option>
                                             <option th:value="Perempuan" th:text="Perempuan"></option>
                                             </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="deskripsi">Alamat<span class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="alamat">Alamat<span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" th:field="*{alamat}" required="required" class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="deskripsi">Telepon<span class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telepon">Telepon<span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" th:field="*{telepon}" required="required" class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="deskripsi">Foto<span class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="foto">Foto<span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" th:field="*{foto}" required="required" class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="deskripsi">Username<span class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="username">Username<span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" th:field="*{username}" required="required" class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="deskripsi">Password<span class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password<span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" th:field="*{password}" required="required" class="form-control col-md-7 col-xs-12"/>
                                     </div>
                                 </div>
+                                
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                                         <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i>
                                             &nbsp;Simpan
                                         </button>
-                                        <a th:href="@{/user/savepage}" class="btn btn-danger"><i class="glyphicon glyphicon-chevron-left"></i>
+                                        <a th:href="@{/user/rw/savepage}" class="btn btn-danger"><i class="glyphicon glyphicon-chevron-left"></i>
                                             &nbsp;Kembali
                                         </a>
                                     </div>
@@ -111,5 +110,5 @@ and open the template in the editor.
             </div>
         </div>
         <!-- End form -->  
-    </body>
+</body>
 </html>

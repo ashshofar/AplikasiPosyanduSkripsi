@@ -13,4 +13,14 @@ public interface UserService {
     public User findUser(String userId);
 
     public Collection<User> getAllUsers();
+    
+    public Collection<User> getAllOrangtuas();
+    
+    public Collection<User> getAllBidans();
+    
+    public Collection<User> getAllPetugas();
+    
+    public Collection<User> getAllRws();
+    
+    public Collection<User> getAllAdmins();
 }

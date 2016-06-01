@@ -14,8 +14,8 @@ import id.posyandu.repositories.KategoriRepository;
 @Transactional
 public class KategoriServiceImplementation implements KategoriService{
 	
-	 @Autowired
-	 protected KategoriRepository kategoriRepository;
+	@Autowired
+	protected KategoriRepository kategoriRepository;
 
 	@Override
 	public Kategori saveKategori(Kategori kategori) {
