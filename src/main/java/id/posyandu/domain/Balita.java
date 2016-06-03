@@ -49,10 +49,10 @@ public class Balita {
     @JoinColumn
     private User ibu;
     
-    @OneToMany(cascade = CascadeType.MERGE, mappedBy="idBalita")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="idBalita")
     private List<Berat> daftarBerat = new ArrayList<>();
     
-    @OneToMany(cascade = CascadeType.MERGE, mappedBy="idBalita")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="idBalita")
     private List<Tinggi> daftarTinggi = new ArrayList<>();
     
     public List<Berat> getDaftarBerat() {

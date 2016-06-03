@@ -378,6 +378,93 @@ public String updateRw(@PathVariable("userId") String userId,
  	
  	return "redirect:/user/rw/savepage";
  }
+
+/*  
+ * Controller Untuk Jabatan Bidan
+ * 
+ */
+
+@RequestMapping(value = {"/user/bidan", "/user/bidan/savepage"}, method = RequestMethod.GET)
+public String indexBidan(Model model) {
+    
+    model.addAttribute("allBidans", (ArrayList<User>) userService.getAllBidans());
+    return "/user/bidan/index";
+}
+
+@RequestMapping(value = "/user/bidan/create", method = RequestMethod.GET)
+public String viewFormBidan(Model model){
+    
+   model.addAttribute("user", new User());
+   return "/user/bidan/create";
+}
+
+@RequestMapping(value = {"/user/bidan/save"}, method = RequestMethod.POST)
+public String saveBidan(@ModelAttribute("user") User user, 
+		   Assigment assigment,
+		   Jabatan jabatan,
+		   final RedirectAttributes redirectAttributes) {
+	   
+	   if (userService.saveUser(user) != null) {
+        redirectAttributes.addFlashAttribute("save", "success");
+    } else {
+        redirectAttributes.addFlashAttribute("save", "unsuccess");
+    }
+	   
+	   jabatan.setJabatanId("9ce32cfb-67f7-4410-93a1-3f15282a9811");
+	   assigment.setIdUser(user);
+	   assigment.setIdJabatan(jabatan);
+	   
+	   assigmentService.saveAssigment(assigment);
+
+    return "redirect:/user/bidan/savepage";
+}
+
+@RequestMapping(value = "/user/bidan/{operation}/{userId}", method = RequestMethod.GET)
+public String editRemoveBidan(@PathVariable("operation") String operation,
+        @PathVariable("userId") String userId, final RedirectAttributes redirectAttributes,
+        Model model) {
+    if (operation.equals("delete")) {
+        if (userService.deleteUser(userId)) {
+            redirectAttributes.addFlashAttribute("deletion", "success");
+        } else {
+            redirectAttributes.addFlashAttribute("deletion", "unsuccess");
+        }
+    } else if (operation.equals("edit")) {
+        User user = userService.findUser(userId);
+        if (user != null) {
+            model.addAttribute("user", user);
+            return "/user/bidan/edit";
+        } else {
+            redirectAttributes.addFlashAttribute("status", "notfound");
+        }
+    } else if (operation.equals("view")) {
+        User user = userService.findUser(userId);
+        if (user != null) {
+            model.addAttribute("user", user);
+            return "/user/bidan/view";
+        } else {
+            redirectAttributes.addFlashAttribute("status", "notfound");
+        }
+    }
+
+    return "redirect:/user/bidan/savepage";
+}
+
+@RequestMapping(value = "/user/bidan/update/{userId}", method = RequestMethod.POST)
+public String updateBidan(@PathVariable("userId") String userId, 
+		    User user,    		
+		final RedirectAttributes redirectAttributes){
+	   	
+	user.setUserId(userId);
+	    	
+	if (userService.saveUser(user) != null) {
+        redirectAttributes.addFlashAttribute("edit", "success");
+    } else {
+        redirectAttributes.addFlashAttribute("edit", "unsuccess");
+    }
+	
+	return "redirect:/user/bidan/savepage";
+}
    
     
 }
