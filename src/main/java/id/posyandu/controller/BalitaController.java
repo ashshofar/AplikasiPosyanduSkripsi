@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import id.posyandu.domain.Balita;
-import id.posyandu.domain.Berat;
-import id.posyandu.domain.Tinggi;
 import id.posyandu.domain.User;
 import id.posyandu.service.BalitaService;
 import id.posyandu.service.BeratService;
@@ -69,8 +67,7 @@ public class BalitaController {
 	
 	@RequestMapping(value = {"/balita/save"}, method = RequestMethod.POST)
     public String saveBalita(@ModelAttribute("balita") Balita balita,
-    		Tinggi tinggi,
-    		Berat berat,
+    		
             final RedirectAttributes redirectAttributes) {
 
         if (balitaService.saveBalita(balita) != null) {
@@ -79,17 +76,6 @@ public class BalitaController {
             redirectAttributes.addFlashAttribute("save", "unsuccess");
         }
         
-        
-        
-       // for(int x=0 ; x<60 ; x++){
-        	tinggi.setIdBalita(balita);
-            berat.setIdBalita(balita);
-	        tinggiService.saveTinggi(tinggi);
-	        beratService.saveBerat(berat);
-	   // }
-        
-        
-
         return "redirect:/balita/savepage";
     }
 	
