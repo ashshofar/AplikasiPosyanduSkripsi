@@ -14,4 +14,6 @@ public interface TinggiService {
     public Tinggi findTinggi(String tinggiId);
 
     public Collection<Tinggi> getAllTinggis();
+    
+    public Collection<Tinggi> findAllTinggiByIdBalita(String idBalita);
 }

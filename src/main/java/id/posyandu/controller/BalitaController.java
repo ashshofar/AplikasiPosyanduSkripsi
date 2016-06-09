@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import id.posyandu.domain.Balita;
+import id.posyandu.domain.Berat;
+import id.posyandu.domain.Tinggi;
 import id.posyandu.domain.User;
 import id.posyandu.service.BalitaService;
 import id.posyandu.service.BeratService;
@@ -102,6 +104,8 @@ public class BalitaController {
             Balita balita = balitaService.findBalita(balitaId);
             if (balita != null) {
                 model.addAttribute("balita", balita);
+                model.addAttribute("beratBalitas", (Collection<Berat>) beratService.findAllBeratByIdBalita(balitaId));
+                model.addAttribute("tinggiBalitas", (Collection<Tinggi>) tinggiService.findAllTinggiByIdBalita(balitaId));
                 return "/balita/view";
             } else {
                 redirectAttributes.addFlashAttribute("status", "notfound");

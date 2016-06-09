@@ -1,6 +1,8 @@
 package id.posyandu.controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -35,8 +37,9 @@ public class BeratTinggiController {
 	@RequestMapping(value = {"/bt", "/bt/savepage"}, method = RequestMethod.GET)
     public String index(Model model) {
         
-        model.addAttribute("allBalitas", (ArrayList<Balita>) balitaService.getAllBalitas());
-        return "/bt/index";
+		//model.addAttribute("umur", (ArrayList<Balita>) balitaService.getAllBalitaAndUmur());
+		model.addAttribute("allBalitas", (ArrayList<Balita>) balitaService.getAllBalitaAndUmur());
+		return "/bt/index";
     }
 	
 	@RequestMapping(value = "/bt/create/{balitaId}", method = RequestMethod.GET)
@@ -45,7 +48,24 @@ public class BeratTinggiController {
             Model model){
 				
 		Balita balita = balitaService.findBalita(balitaId);
-			
+		Date lahir = balita.getTanggalLahir();
+		Date sekarang = new Date();
+		
+	    Calendar cal = Calendar.getInstance();
+	    cal.setTime(lahir);
+	    int year = cal.get(Calendar.YEAR);
+	    int month = cal.get(Calendar.MONTH);
+	    
+	    
+	    Calendar calnow = Calendar.getInstance();
+	    calnow.setTime(sekarang);
+	    int yearnow = calnow.get(Calendar.YEAR);
+	    int monthnow = calnow.get(Calendar.MONTH);
+	   
+	    
+	    int umur = (yearnow - year) * 12 + (monthnow - month) + 1;
+	    
+	    model.addAttribute("umur", umur);	
 		model.addAttribute("balita", balita);
 		model.addAttribute("berat", new Berat());
         model.addAttribute("tinggi", new Tinggi());

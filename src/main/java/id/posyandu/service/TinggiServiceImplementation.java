@@ -46,5 +46,11 @@ public class TinggiServiceImplementation implements TinggiService{
 		Iterable<Tinggi> itr = tinggiRepository.findAll();
         return (Collection<Tinggi>) itr;
 	}
+	
+	@Override
+	public Collection<Tinggi> findAllTinggiByIdBalita(String idBalita){
+		Iterable<Tinggi> itr = tinggiRepository.findById(idBalita);
+		return (Collection<Tinggi>) itr;
+	}
 
 }

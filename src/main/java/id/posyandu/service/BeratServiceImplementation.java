@@ -48,5 +48,11 @@ public class BeratServiceImplementation implements BeratService{
         return (Collection<Berat>) itr;
 	}
 	
+	@Override
+	public Collection<Berat> findAllBeratByIdBalita(String idBalita){
+		Iterable<Berat> itr = beratRepository.findById(idBalita);
+		return (Collection<Berat>) itr;
+	}
+	
 
 }

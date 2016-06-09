@@ -14,5 +14,7 @@ public interface BeratService {
     public Berat findBerat(String beratId);
 
     public Collection<Berat> getAllBerats();
+    
+    public Collection<Berat> findAllBeratByIdBalita(String idBalita);
 
 }

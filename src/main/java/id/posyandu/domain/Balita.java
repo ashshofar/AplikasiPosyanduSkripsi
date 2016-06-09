@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -40,6 +41,9 @@ public class Balita {
     private Float beratLahir;
     
     private Float tinggiLahir;
+    
+    @Transient 
+    private int umur;
     
     @ManyToOne(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
     @JoinColumn
@@ -142,5 +146,23 @@ public class Balita {
 	public void setIbu(User ibu) {
 		this.ibu = ibu;
 	}
+
+	public int getUmur() {
+		return umur;
+	}
+
+	public void setUmur(int umur) {
+		this.umur = umur;
+	}
+
+	public List<Tinggi> getDaftarTinggi() {
+		return daftarTinggi;
+	}
+
+	public void setDaftarTinggi(List<Tinggi> daftarTinggi) {
+		this.daftarTinggi = daftarTinggi;
+	}
+	
+	
        
 }

@@ -14,4 +14,6 @@ public interface BalitaService {
     public Balita findBalita(String balitaId);
 
     public Collection<Balita> getAllBalitas();
+    
+    public Collection<Balita> getAllBalitaAndUmur();
 }

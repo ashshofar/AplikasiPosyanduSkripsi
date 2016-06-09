@@ -47,5 +47,11 @@ public class BalitaServiceImplementation implements BalitaService{
 		Iterable<Balita> itr = balitaRepository.findAll();
         return (Collection<Balita>) itr;
 	}
+	
+	@Override
+	public Collection<Balita> getAllBalitaAndUmur() {
+		Iterable<Balita> itr = balitaRepository.findBalitaAndUmur();
+        return (Collection<Balita>) itr;
+	}
 
 }
