@@ -46,7 +46,7 @@ and open the template in the editor.
                                         <tr th:each="balita : ${allBalitas}">
                                             <td th:text="${balita.nama}">nama</td>
                                             <td th:text="${balita.tanggalLahir}"></td>
-                                            <td th:text="${balita.umur}">nama</td>
+                                            <td th:text="${balita.hitungumur()}">nama</td>
                                             <td align="center">
                                                 <table>
                                                     <tr>

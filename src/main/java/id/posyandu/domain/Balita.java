@@ -1,6 +1,7 @@
 package id.posyandu.domain;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -153,6 +154,7 @@ public class Balita {
 
 	public void setUmur(int umur) {
 		this.umur = umur;
+		
 	}
 
 	public List<Tinggi> getDaftarTinggi() {
@@ -163,6 +165,25 @@ public class Balita {
 		this.daftarTinggi = daftarTinggi;
 	}
 	
+	public Integer hitungumur(){
+		Date lahir = this.tanggalLahir;
+		Date sekarang = new Date();
+		
+	    Calendar cal = Calendar.getInstance();
+	    cal.setTime(lahir);
+	    int year = cal.get(Calendar.YEAR);
+	    int month = cal.get(Calendar.MONTH);
+	    	    
+	    Calendar calnow = Calendar.getInstance();
+	    calnow.setTime(sekarang);
+	    int yearnow = calnow.get(Calendar.YEAR);
+	    int monthnow = calnow.get(Calendar.MONTH);
+	   
+	    
+	    this.umur = (yearnow - year) * 12 + (monthnow - month) + 1;
+	    
+		return umur;
+	}
 	
-       
+	
 }

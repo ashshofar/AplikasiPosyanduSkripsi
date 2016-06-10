@@ -37,7 +37,7 @@ and open the template in the editor.
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tempatLahir">Umur (Bulan)<span class="required">*</span>
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" th:value="*{umur}" name="umur" required="required" readonly="readonly" class="form-control col-md-7 col-xs-12"/>
+                                        <input type="text" th:value="*{balita.hitungumur()}" name="umur" required="required" readonly="readonly" class="form-control col-md-7 col-xs-12"/>
                                     	
                                     </div>
                                 </div>

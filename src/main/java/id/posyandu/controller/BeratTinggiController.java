@@ -1,8 +1,7 @@
 package id.posyandu.controller;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -48,24 +47,7 @@ public class BeratTinggiController {
             Model model){
 				
 		Balita balita = balitaService.findBalita(balitaId);
-		Date lahir = balita.getTanggalLahir();
-		Date sekarang = new Date();
-		
-	    Calendar cal = Calendar.getInstance();
-	    cal.setTime(lahir);
-	    int year = cal.get(Calendar.YEAR);
-	    int month = cal.get(Calendar.MONTH);
-	    
-	    
-	    Calendar calnow = Calendar.getInstance();
-	    calnow.setTime(sekarang);
-	    int yearnow = calnow.get(Calendar.YEAR);
-	    int monthnow = calnow.get(Calendar.MONTH);
-	   
-	    
-	    int umur = (yearnow - year) * 12 + (monthnow - month) + 1;
-	    
-	    model.addAttribute("umur", umur);	
+			
 		model.addAttribute("balita", balita);
 		model.addAttribute("berat", new Berat());
         model.addAttribute("tinggi", new Tinggi());
@@ -76,11 +58,8 @@ public class BeratTinggiController {
 	@RequestMapping(value = "/bt/save", method = RequestMethod.POST)
 	public String saveBeratTinggi(@ModelAttribute("berat") Berat berat,
 				@ModelAttribute("tinggi") Tinggi tinggi,
-				//int umurTinggi,
 				final RedirectAttributes redirectAttributes){
 	    	   	
-				//umurTinggi = berat.getUmur();
-				//tinggi.setUmur(umurTinggi);
 				
 	    	if (beratService.saveBerat(berat) != null) {
 	            redirectAttributes.addFlashAttribute("edit", "success");
