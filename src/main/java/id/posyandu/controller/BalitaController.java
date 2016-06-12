@@ -62,7 +62,8 @@ public class BalitaController {
     public String viewForm(Model model){
         
        model.addAttribute("balita", new Balita());
-       model.addAttribute("allUsers", (Collection<User>) userService.getAllUsers());
+       model.addAttribute("allAyahs", (Collection<User>) userService.getAllAyahs());
+       model.addAttribute("allIbus", (Collection<User>) userService.getAllIbus());
         
         return "/balita/create";
     }
@@ -95,7 +96,8 @@ public class BalitaController {
             Balita balita = balitaService.findBalita(balitaId);
             if (balita != null) {
                 model.addAttribute("balita", balita);
-                model.addAttribute("allUsers", (Collection<User>) userService.getAllUsers());
+                model.addAttribute("allAyahs", (Collection<User>) userService.getAllAyahs());
+                model.addAttribute("allIbus", (Collection<User>) userService.getAllIbus());
                 return "/balita/edit";
             } else {
                 redirectAttributes.addFlashAttribute("status", "notfound");

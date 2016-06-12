@@ -22,4 +22,10 @@ public interface UserRepository extends CrudRepository<User, String>{
 	@Query(value = "SELECT * FROM user JOIN assigment on user_id = id_user_userId WHERE id_jabatan_jabatanId = 'aa0efeb2-556b-48ca-9043-69c7229c7bcb'", nativeQuery = true)
 	Iterable<User> findAdmin();
 	
+	@Query(value = "SELECT * FROM user WHERE jenis_kelamin='Laki-Laki'", nativeQuery = true)
+	Iterable<User> findAyah();
+	
+	@Query(value = "SELECT * FROM user WHERE jenis_kelamin='Perempuan'", nativeQuery = true)
+	Iterable<User> findIbu();
+	
 }

@@ -23,4 +23,8 @@ public interface UserService {
     public Collection<User> getAllRws();
     
     public Collection<User> getAllAdmins();
+    
+    public Collection<User> getAllAyahs();
+    
+    public Collection<User> getAllIbus();
 }

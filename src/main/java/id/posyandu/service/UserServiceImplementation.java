@@ -75,4 +75,16 @@ public class UserServiceImplementation implements UserService {
         return (Collection<User>) itr;
 	}
 
+	@Override
+	public Collection<User> getAllAyahs() {
+		Iterable<User> itr = userRepository.findAyah();
+        return (Collection<User>) itr;
+	}
+
+	@Override
+	public Collection<User> getAllIbus() {
+		Iterable<User> itr = userRepository.findIbu();
+        return (Collection<User>) itr;
+	}
+
 }

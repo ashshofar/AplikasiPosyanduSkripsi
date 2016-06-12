@@ -139,53 +139,54 @@
 											<br />
 											<h2>Biodata Lengkap</h2>
 											<br />
-											<div class="x_content">
-											<table class="table table-striped">
-												<tbody>
-													<tr>
-														<th scope="row">Nama</th>
-														<td th:text="${balita.nama}"></td>
-														<td></td><td></td><td></td><td></td>
-													</tr>
-													<tr>
-														<th scope="row">Tempat Lahir</th>
-														<td th:text="${balita.tempatLahir}"></td>
-														<td></td><td></td><td></td><td></td>
-													</tr>
-													<tr>
-														<th scope="row">Tanggal Lahir</th>
-														<td th:text="${balita.tanggalLahir}"></td>
-														<td></td><td></td><td></td><td></td>
-													</tr>
-													<tr>
-														<th scope="row">Jenis Kelamin</th>
-														<td th:text="${balita.jenisKelamin}"></td>
-														<td></td><td></td><td></td><td></td>
-													</tr>
-													<tr>
-														<th scope="row">Berat Lahir</th>
-														<td th:text="${balita.beratLahir}"></td>
-														<td></td><td></td><td></td><td></td>
-													</tr>
-													<tr>
-														<th scope="row">Tinggi Lahir</th>
-														<td th:text="${balita.tinggiLahir}"></td>
-														<td></td><td></td><td></td><td></td>
-													</tr>
-													<tr>
-														<th scope="row">Nama Ayah</th>
-														<td th:text="${balita.ayah.nama}"></td>
-														<td></td><td></td><td></td><td></td>
-													</tr>
-													<tr>
-														<th scope="row">Nama Ibu</th>
-														<td th:text="${balita.ibu.nama}"></td>
-														<td></td><td></td><td></td><td></td>
-													</tr>
-
-												</tbody>
-											</table>
-											</div>
+											
+											
+												<table class="table table-striped">
+													<tbody>
+														<tr>
+															<th scope="row">Nama</th>
+															<td th:text="${balita.nama}"></td>
+															<td></td><td></td><td></td><td></td>
+														</tr>
+														<tr>
+															<th scope="row">Tempat Lahir</th>
+															<td th:text="${balita.tempatLahir}"></td>
+															<td></td><td></td><td></td><td></td>
+														</tr>
+														<tr>
+															<th scope="row">Tanggal Lahir</th>
+															<td th:text="${balita.tanggalLahir}"></td>
+															<td></td><td></td><td></td><td></td>
+														</tr>
+														<tr>
+															<th scope="row">Jenis Kelamin</th>
+															<td th:text="${balita.jenisKelamin}"></td>
+															<td></td><td></td><td></td><td></td>
+														</tr>
+														<tr>
+															<th scope="row">Berat Lahir</th>
+															<td th:text="${balita.beratLahir}"></td>
+															<td></td><td></td><td></td><td></td>
+														</tr>
+														<tr>
+															<th scope="row">Tinggi Lahir</th>
+															<td th:text="${balita.tinggiLahir}"></td>
+															<td></td><td></td><td></td><td></td>
+														</tr>
+														<tr>
+															<th scope="row">Nama Ayah</th>
+															<td th:text="${balita.ayah.nama}"></td>
+															<td></td><td></td><td></td><td></td>
+														</tr>
+														<tr>
+															<th scope="row">Nama Ibu</th>
+															<td th:text="${balita.ibu.nama}"></td>
+															<td></td><td></td><td></td><td></td>
+														</tr>
+	
+													</tbody>
+												</table>
+											
 											<!-- end recent activity -->
 
 										</div>
@@ -196,6 +197,7 @@
 											<div class="x_content">
 							                  <canvas id="lineChart"></canvas>
 							                </div>
+							                <div class="col-md-11 col-sm-11 col-xs-11">
 											<table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
 												<thead>
 			                                        <tr>
@@ -213,6 +215,7 @@
 			                                        </tr>
 			                                    </tbody>
 											</table>
+											</div>
 											<!-- end user projects -->
 
 										</div>
@@ -220,6 +223,10 @@
 											aria-labelledby="profile-tab">
 
 											<!-- start user projects -->
+											<div class="x_content">
+							                  <canvas id="lineChart2"></canvas>
+							                </div>
+											<div class="col-md-11 col-sm-11 col-xs-11">
 											<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
 												<thead>
 			                                        <tr>
@@ -237,6 +244,7 @@
 			                                        </tr>
 			                                    </tbody>
 											</table>
+											</div>
 											<!-- end user projects -->
 
 										</div>
@@ -275,7 +283,29 @@
         }]
       },
     });
+    
+ // Line chart
+    var ctx = document.querySelector('#lineChart2');
+    var lineChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+    	labels: ["January", "February", "March", "April", "May", "June", "July"],
+        //labels: [ var value = [(${berat.umur})]; ],
+        datasets: [{
+          label: "My First dataset",
+          backgroundColor: "rgba(38, 185, 154, 0.31)",
+          borderColor: "rgba(38, 185, 154, 0.7)",
+          pointBorderColor: "rgba(38, 185, 154, 0.7)",
+          pointBackgroundColor: "rgba(38, 185, 154, 0.7)",
+          pointHoverBackgroundColor: "#fff",
+          pointHoverBorderColor: "rgba(220,220,220,1)",
+          pointBorderWidth: 1,
+          data: [31, 74, 6, 39, 20, 85, 7]
+        }]
+      },
+    });
     </script>
+        
 	</div>
 	
 </body>
